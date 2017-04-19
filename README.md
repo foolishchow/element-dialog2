@@ -1,9 +1,9 @@
 # element-dialog2
 an extension of element-dialog that allow you to use it nested
 
-- dependence    
-    [element-ui][element]
-   [element]: https://github.com/ElemeFE/element "element-ui"
+- dependence      
+    [element-ui][element]   
+    [element]: https://github.com/ElemeFE/element "element-ui"
 
 > useage  
 
