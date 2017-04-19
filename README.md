@@ -18,7 +18,7 @@ an extension of element-dialog that allow you to use it nested
     var ElDialog2 = require('element-dialog2');
     Vue.component(ElDialog2.name,ElDialog2);
     //import form source
-    import ElDialog2 from 'element-dialog/src/index.js';
+    import ElDialog2 from 'element-dialog2/src/index.js';
     Vue.component(ElDialog2.name,ElDialog2)
     ```
  - code
