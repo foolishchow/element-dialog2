@@ -80,7 +80,7 @@ var newVue = function newVue(self) {
                     'custom-class': this.obj.customClass,
                     'close-on-press-escape': this.obj.closeOnPressEscape,
                     'show-close': this.obj.showClose,
-                    'close-on-click-modal': false
+                    'close-on-click-modal': this.obj.closeOnClickModal
                 },
                 on: {
                     'open': this.handleOpen,
@@ -156,7 +156,7 @@ var ElDialog2$1 = { render: function render() {
         },
         closeOnClickModal: {
             type: Boolean,
-            default: true
+            default: false
         },
         closeOnPressEscape: {
             type: Boolean,

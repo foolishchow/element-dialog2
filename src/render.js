@@ -22,7 +22,7 @@ const newVue = function(self) {
                         'custom-class': this.obj.customClass,
                         'close-on-press-escape': this.obj.closeOnPressEscape,
                         'show-close': this.obj.showClose,
-                        'close-on-click-modal': false
+                        'close-on-click-modal': this.obj.closeOnClickModal
                     },
                     on: {
                         'open': this.handleOpen,
