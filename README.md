@@ -23,7 +23,7 @@ an extension of element-dialog that allow you to use it nested
     ```
  - code
     ```html
-    <el-dialog2 title="新增交付信息"  v-if="showed" v-model="showed"
+    <el-dialog2 title="this is title"  v-if="showed" v-model="showed"
         v-on:close="handleClose">
         <span>code of $slots.default</span>
         <div slot="footer">
@@ -31,6 +31,19 @@ an extension of element-dialog that allow you to use it nested
         </div>
     </el-dialog2>
     ```
+    ```html
+    <el-dialog2   v-if="showed" v-model="showed"
+        v-on:close="handleClose">
+        <div slot="title">
+            this is title
+        </div>
+        <span>code of $slots.default</span>
+        <div slot="footer">
+            code of $slots.footer
+        </div>
+    </el-dialog2>
+    ```
+
 
 > ### Attributes
 
