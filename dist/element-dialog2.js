@@ -66,6 +66,7 @@ var newVue = function newVue(self) {
         },
         render: function render(h) {
             var slots = [];
+            if (this.obj.$slots.title) slots.push(h('div', { slot: 'title' }, [this.obj.$slots.title]));
             if (this.obj.$slots.default) slots.push(this.obj.$slots.default);
             if (this.obj.$slots.footer) slots.push(h('div', { slot: 'footer' }, [this.obj.$slots.footer]));
             return h('el-dialog', {
