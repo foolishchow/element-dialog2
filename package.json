@@ -1,6 +1,6 @@
 {
   "name": "element-dialog2",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "an extension of element-dialog that allow you to use it nested",
   "main": "dist/element-dialog2.common.js",
   "scripts": {

@@ -129,9 +129,7 @@ var mixin = {
     }
 };
 
-var ElDialog2$1 = { render: function render() {
-        var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _vm.value ? _c('div', { staticClass: "el-dialog2" }) : _vm._e();
-    }, staticRenderFns: [],
+var ElDialog2$1 = {
     mixins: [mixin],
     name: 'el-dialog2',
     props: {
@@ -182,6 +180,15 @@ var ElDialog2$1 = { render: function render() {
     },
     data: function data() {
         return {};
+    },
+    render: function render(h) {
+        if (this.value) {
+            return h('div', {
+                staticClass: "el-dialog2"
+            });
+        } else {
+            return null;
+        }
     }
 };
 

@@ -1,7 +1,7 @@
 'use strict';
 
-let dialogIndex = 0;
-const addClass = function (el, cls) {
+var dialogIndex = 0;
+var addClass = function addClass(el, cls) {
     if (!el) return;
     var curClass = el.className;
     var classes = (cls || '').split(' ');
@@ -22,7 +22,7 @@ const addClass = function (el, cls) {
         el.className = curClass;
     }
 };
-const getDialogContainer = function () {
+var getDialogContainer = function getDialogContainer() {
     var container = document.querySelector('body>#el-dialog-container');
     if (!container) {
         container = document.createElement('div');
@@ -32,55 +32,52 @@ const getDialogContainer = function () {
     }
     return container;
 };
-const getDialogRoot = function (index) {
-    let container = getDialogContainer();
-    let wrap = document.createElement('div');
-    addClass(wrap, `el-dialog-wrap-${index}`);
-    let obj = document.createElement('div');
+var getDialogRoot = function getDialogRoot(index) {
+    var container = getDialogContainer();
+    var wrap = document.createElement('div');
+    addClass(wrap, 'el-dialog-wrap-' + index);
+    var obj = document.createElement('div');
     wrap.appendChild(obj);
     container.appendChild(wrap);
     return obj;
 };
-const clearDialogRoot = function (index) {
-    var obj = document.querySelector(`body>#el-dialog-container>.el-dialog-wrap-${index}`);
+var clearDialogRoot = function clearDialogRoot(index) {
+    var obj = document.querySelector('body>#el-dialog-container>.el-dialog-wrap-' + index);
     obj.remove();
 };
-const dialog = {
+var dialog = {
     get: getDialogRoot,
     clear: clearDialogRoot,
-    index() {
+    index: function index() {
         dialogIndex++;
         return dialogIndex;
     }
 };
 
-let cache = {};
-const newVue = function (self) {
-    var obj = new Vue({
+var cache = {};
+var newVue = function newVue(self) {
+    var instance = new Vue({
         data: {
             obj: self
         },
-        render(h) {
+        render: function render(h) {
             var slots = [];
-            if (this.obj.$slots.default) {
-                slots.push(this.obj.$slots.default);
-            }
-            if (this.obj.$slots.footer) {
-                slots.push(h('div', { slot: 'footer' }, [this.obj.$slots.footer]));
-            }
+            if (this.obj.$slots.title) slots.push(h('div', { slot: 'title' }, [this.obj.$slots.title]));
+            if (this.obj.$slots.default) slots.push(this.obj.$slots.default);
+            if (this.obj.$slots.footer) slots.push(h('div', { slot: 'footer' }, [this.obj.$slots.footer]));
             return h('el-dialog', {
                 attrs: {
-                    title: this.obj.title,
-                    value: this.obj.value,
-                    modal: this.obj.modal,
+                    'title': this.obj.title,
+                    'value': this.obj.value,
+                    'modal': this.obj.modal,
                     'modal-append-to-body': this.obj.modalAppendToBody,
-                    top: this.obj.top,
-                    size: this.obj.size,
+                    'top': this.obj.top,
+                    'size': this.obj.size,
                     'lock-scroll': this.obj.lockScroll,
                     'custom-class': this.obj.customClass,
                     'close-on-press-escape': this.obj.closeOnPressEscape,
                     'show-close': this.obj.showClose,
-                    'close-on-click-modal': false
+                    'close-on-click-modal': this.obj.closeOnClickModal
                 },
                 on: {
                     'open': this.handleOpen,
@@ -88,52 +85,47 @@ const newVue = function (self) {
                 }
             }, [slots]);
         },
+
         methods: {
-            handleOpen() {
+            handleOpen: function handleOpen() {
                 // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : open`)
                 self.$emit('open');
             },
-            handleClose() {
+            handleClose: function handleClose() {
                 self.$emit('close');
                 self.$emit('input', false);
                 // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : close`)
             }
         }
-        /*,
-        updated(){
-            console.info(`[component:el-dialog2:inner-dialog-${self.index}] : updated`);
-        }*/
     });
-    return obj;
+    return instance;
 };
 var mixin = {
-    destroyed() {
+    destroyed: function destroyed() {
         if (this.index) {
             cache[this.index].$destroy();
             dialog.clear(this.index);
         }
     },
-    updated() {
+    updated: function updated() {
         // console.info(`[component:el-dialog2:index(${this.index})] : updated`);
         // console.info(this.$slots)
         cache[this.index].$forceUpdate();
     },
-    created() {
+    created: function created() {
         if (this.index == undefined) {
-            var index = dialog.index();
-            this.index = index;
+            this.index = dialog.index();
         }
         // console.info(`[component:el-dialog2:index(${this.index})]  : create`)
     },
-    beforeMount() {},
-    mounted() {
+    mounted: function mounted() {
         var root = dialog.get(this.index);
         cache[this.index] = newVue(this);
         cache[this.index].$mount(root);
     }
 };
 
-var ElDialog2$1 = { template: "<div class=\"el-dialog2\" v-if=\"value\"></div>",
+var ElDialog2$1 = {
     mixins: [mixin],
     name: 'el-dialog2',
     props: {
@@ -159,7 +151,7 @@ var ElDialog2$1 = { template: "<div class=\"el-dialog2\" v-if=\"value\"></div>",
         },
         closeOnClickModal: {
             type: Boolean,
-            default: true
+            default: false
         },
         closeOnPressEscape: {
             type: Boolean,
@@ -182,8 +174,17 @@ var ElDialog2$1 = { template: "<div class=\"el-dialog2\" v-if=\"value\"></div>",
             default: '15%'
         }
     },
-    data() {
+    data: function data() {
         return {};
+    },
+    render: function render(h) {
+        if (this.value) {
+            return h('div', {
+                staticClass: "el-dialog2"
+            });
+        } else {
+            return null;
+        }
     }
 };
 
