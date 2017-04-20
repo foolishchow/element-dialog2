@@ -5,3 +5,5 @@ gulpfile.js
 .babelrc
 example
 .git
+dist/element-dialog2.js
+dist/element-dialog2.min.js
