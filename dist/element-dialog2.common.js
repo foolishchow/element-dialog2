@@ -57,8 +57,11 @@ var dialog = {
 var cache = {};
 var newVue = function newVue(self) {
     var instance = new Vue({
-        data: {
-            obj: self
+        data: {},
+        computed: {
+            obj: function obj() {
+                return self;
+            }
         },
         render: function render(h) {
             var slots = [];
@@ -69,6 +72,7 @@ var newVue = function newVue(self) {
                 attrs: {
                     'title': this.obj.title,
                     'value': this.obj.value,
+                    'visible': this.obj.value,
                     'modal': this.obj.modal,
                     'modal-append-to-body': this.obj.modalAppendToBody,
                     'top': this.obj.top,
@@ -81,7 +85,8 @@ var newVue = function newVue(self) {
                 },
                 on: {
                     'open': this.handleOpen,
-                    'close': this.handleClose
+                    'close': this.handleClose,
+                    'update:visible': this.handleStatus
                 }
             }, [slots]);
         },
@@ -92,9 +97,16 @@ var newVue = function newVue(self) {
                 self.$emit('open');
             },
             handleClose: function handleClose() {
+                // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : close`)
                 self.$emit('close');
                 self.$emit('input', false);
-                // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : close`)
+            },
+            handleStatus: function handleStatus(val) {
+                if (val) {
+                    this.handleOpen();
+                } else {
+                    this.handleClose();
+                }
             }
         }
     });

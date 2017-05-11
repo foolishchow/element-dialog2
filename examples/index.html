@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http:////at.alicdn.com/t/font_a9e0jr8sy2hme7b9.css">
     <!-- 引入组件库 -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/element-ui@1.2.7/lib/index.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <script type="text/javascript" src="../dist/element-dialog2.js"></script>
     <style type="text/css">
     body>div>p {
@@ -22,10 +22,13 @@
 <body>
     <div id="app" style="padding: 30px;">
         <el-button type="primary" @click="showD1">click to show Dialog 1</el-button>
-        <el-dialog2 title="dialog1" v-model="showDialog1" size="tiny">
+        <el-dialog2 title="dialog1" v-model="showDialog1" size="tiny" @open="open" @close="close">
             <p>this is content of dialog 1</p>
             <el-dialog2 title="dialog2" v-model="showDialog2">
                 <p>this is content of dialog 2</p>
+                <div slot="footer" class="dialog-footer">
+                <el-button type="primary" @click="closeD2">click to close Dialog 2</el-button>
+            </div>
             </el-dialog2>
             <div slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="showD2">click to show Dialog 2</el-button>
@@ -46,6 +49,15 @@
             },
             showD1() {
                this.showDialog1 = true; 
+            },
+            closeD2(){
+                this.showDialog2 = false;
+            },
+            open(){
+                console.info('open')
+            },
+            close(){
+                console.info('close')
             }
         }
     })

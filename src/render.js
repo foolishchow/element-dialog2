@@ -18,6 +18,7 @@ const newVue = function(self) {
                     attrs: {
                         'title': this.obj.title,
                         'value': this.obj.value,
+                        'visible':this.obj.value,
                         'modal': this.obj.modal,
                         'modal-append-to-body': this.obj.modalAppendToBody,
                         'top': this.obj.top,
@@ -30,7 +31,8 @@ const newVue = function(self) {
                     },
                     on: {
                         'open': this.handleOpen,
-                        'close': this.handleClose
+                        'close': this.handleClose,
+                        'update:visible':this.handleStatus
                     }
                 }, [slots]
             );
@@ -41,9 +43,16 @@ const newVue = function(self) {
                 self.$emit('open')
             },
             handleClose() {
+                // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : close`)
                 self.$emit('close')
                 self.$emit('input', false)
-                // console.info(`[component:el-dialog2:inner-dialog-${self.index}] : close`)
+            },
+            handleStatus(val){
+                if(val){
+                    this.handleOpen();
+                }else{
+                    this.handleClose();
+                }
             }
         }
     });
