@@ -1,6 +1,11 @@
 # element-dialog2
 an extension of element-dialog that allow you to use it nested
 
+> versions 
+
+currently vue@2.3.0+ with element-ui@1.3.0+ do not work.
+
+
 - dependence      
     [element-ui][element]   
     
