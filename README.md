@@ -65,6 +65,18 @@ currently vue@2.3.0+ with element-ui@1.3.0+ work correct.
 | close-on-click-modal |default value diffrent| whether the Dialog can be closed by clicking the mask | boolean    | — | `false` |
 | close-on-press-escape |same| whether the Dialog can be closed by pressing ESC | boolean    | — | true |
 | show-close |same| whether to show a close button | boolean    | — | true |
+| before-close |same| beforeclose(close) | Function    | — | null |
+
+- beforeClose
+    new in `element-ui@1.3.0+` 
+    ```javascript
+        beforeClose(close){
+            if(...){
+                // hook of close
+                close();
+            }
+        }
+    ```
 
 > ### Slot
 

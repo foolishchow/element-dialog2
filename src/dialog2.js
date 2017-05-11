@@ -46,7 +46,8 @@ export default {
         top: {
             type: String,
             default: '15%'
-        }
+        },
+        beforeClose: Function
     },
     data() {
         return {};
