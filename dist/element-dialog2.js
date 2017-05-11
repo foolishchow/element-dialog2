@@ -106,10 +106,13 @@ var newVue = function newVue(self) {
                 self.$emit('input', false);
             },
             handleStatus: function handleStatus(val) {
+                var valold = this.obj.value;
+                if (val == valold) return;
                 if (val) {
-                    this.handleOpen();
+                    // self.$emit('open')
                 } else {
-                    this.handleClose();
+                    // self.$emit('close')
+                    self.$emit('input', false);
                 }
             }
         }
