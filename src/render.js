@@ -2,8 +2,11 @@ import dialog from './util';
 let cache = {};
 const newVue = function(self) {
     var instance = new Vue({
-        data: {
-            obj: self
+        data: {},
+        computed:{
+            obj(){
+                return self;
+            }
         },
         render(h) {
             var slots = [];

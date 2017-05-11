@@ -61,8 +61,11 @@ var dialog = {
 var cache = {};
 var newVue = function newVue(self) {
     var instance = new Vue({
-        data: {
-            obj: self
+        data: {},
+        computed: {
+            obj: function obj() {
+                return self;
+            }
         },
         render: function render(h) {
             var slots = [];

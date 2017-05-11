@@ -44,7 +44,6 @@ an extension of element-dialog that allow you to use it nested
     </el-dialog2>
     ```
 
-
 > ### Attributes
 
 | Attribute     |Compare Element | Description          | Type      | Accepted Values       | Default  |
