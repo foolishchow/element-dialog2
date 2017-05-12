@@ -5,13 +5,19 @@ an extension of element-dialog that allow you to use it nested
 
 [npm-version]: https://img.shields.io/npm/v/element-dialog2.svg 'npm-version'
 [npm-home]: https://www.npmjs.com/package/element-dialog2 'element-dialog2'
-currently vue@2.3.0+ with element-ui@1.3.0+ work correct.
-
 
 - dependence      
     [element-ui][element]   
     
     [element]: https://github.com/ElemeFE/element "element-ui"
+
+> versions 
+
+- 0.0.5   
+    `open` and `close` envents won't be `$emited` repeated.
+- 0.0.4   
+    currently vue@2.3.0+ with element-ui@1.3.0+ work correct.
+
 
 > useage  
 
